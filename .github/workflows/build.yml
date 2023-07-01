@@ -25,9 +25,12 @@ jobs:
         make build
     - name: Commit and push if changed
       run: |
-        git remote set-url origin https://github-actions:${GITHUB_TOKEN}@github.com/~
-        git config --local user.email "github-actions[bot]@users.noreply.github.com"
-        git config --local user.name "github-actions[bot]"
-        git add gitleaks
-        git commit -m "Add built gitleaks binary" || exit 0
-        git push
+          git config core.filemode false
+          if ! git diff --exit-code --quiet
+          then
+            git config --local user.email "github-actions[bot]@users.noreply.github.com"
+            git config --local user.name "github-actions[bot]"
+            git add gitleaks
+            git commit -m "Add built gitleaks binary" || exit 0
+            git push https://${{github.actor}}:${{secrets.GITHUB_TOKEN}}@github.com/${{github.repository}}.git HEAD:${{github.ref}}
+          fi
