@@ -25,6 +25,7 @@ jobs:
         make build
     - name: Commit and push if changed
       run: |
+        git config --global url."https://${{ secrets.GITHUB_TOKEN }}@github.com/".insteadOf "https://github.com/"
         git config --global user.email "action@github.com"
         git config --global user.name "GitHub Action"
         git add gitleaks
