@@ -25,9 +25,9 @@ jobs:
         make build
     - name: Commit and push if changed
       run: |
-        git config --global url."https://${{ secrets.GITHUB_TOKEN }}@github.com/".insteadOf "https://github.com/"
-        git config --global user.email "action@github.com"
-        git config --global user.name "GitHub Action"
+        git remote set-url origin https://github-actions:${GITHUB_TOKEN}@github.com/~
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
         git add gitleaks
         git commit -m "Add built gitleaks binary" || exit 0
         git push
