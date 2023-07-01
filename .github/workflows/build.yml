@@ -1,0 +1,32 @@
+name: Build Gitleaks
+
+on:
+  schedule:
+    # - cron: '0 9 * * 1'
+    # for debug
+    - cron: '*/2 * * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Set up Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: 1.19
+
+    - name: Build Gitleaks
+      run: |
+        git clone https://github.com/gitleaks/gitleaks.git
+        cd gitleaks
+        make build
+    - name: Commit and push if changed
+      run: |
+        git config --global user.email "action@github.com"
+        git config --global user.name "GitHub Action"
+        git add gitleaks
+        git commit -m "Add built gitleaks binary" || exit 0
+        git push
