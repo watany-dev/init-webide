@@ -2,10 +2,10 @@ name: Build Gitleaks
 
 on:
   schedule:
-    # - cron: '0 9 * * 1'
+    - cron: '0 9 * * 1'
     # for debug
     - cron: '*/5 * * * *'
-
+  workflow_dispatch:
 jobs:
   build:
     runs-on: ubuntu-latest
