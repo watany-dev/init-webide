@@ -4,7 +4,7 @@ on:
   schedule:
     - cron: '0 9 * * 1'
     # for debug
-    - cron: '*/5 * * * *'
+#     - cron: '*/5 * * * *'
   workflow_dispatch:
 jobs:
   build:
