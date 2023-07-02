@@ -32,6 +32,7 @@ jobs:
         git config core.filemode false
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
+        
         git add -f gitleaks
         git commit -m "Add built gitleaks binary" || exit 0
         git push https://${{github.actor}}:${{secrets.GITHUB_TOKEN}}@github.com/${{github.repository}}.git HEAD:${{github.ref}}
