@@ -24,6 +24,8 @@ jobs:
         cd gitleaks
         make build
         pwd
+        ls
+        ls bin/
 
     - name: Clean Gitleaks
       run: |
