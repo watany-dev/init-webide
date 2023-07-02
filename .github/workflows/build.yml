@@ -23,6 +23,8 @@ jobs:
         git clone https://github.com/gitleaks/gitleaks.git
         cd gitleaks
         make build
+        mv gitleaks ../
+        cd ../
     - name: Commit and push if changed
       run: |
           git config core.filemode false
