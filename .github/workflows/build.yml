@@ -21,10 +21,15 @@ jobs:
     - name: Build Gitleaks
       run: |
         git clone https://github.com/gitleaks/gitleaks.git
-        mkdir hook
         cd gitleaks
         make build
-        mv gitleaks ../hook/
+
+    - name: Clean Gitleaks
+      run: |
+        mv gitleaks ../gitleak
+        cd ../
+        rm -rf gitleaks
+        mv gitleak gitleaks
     - name: Commit and push if changed
       run: |
           git config core.filemode false
