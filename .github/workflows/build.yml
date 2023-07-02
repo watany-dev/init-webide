@@ -23,17 +23,7 @@ jobs:
         git clone https://github.com/gitleaks/gitleaks.git
         cd gitleaks
         make build
-        pwd
-        ls
-        ls bin/
-
-    - name: Clean Gitleaks
-      run: |
-        mv gitleaks ../gitleak
-        cd ../
-        pwd
-        rm -rf gitleaks
-        mv gitleak gitleaks
+        
     - name: Commit and push if changed
       run: |
           git config core.filemode false
